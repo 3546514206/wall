@@ -9,10 +9,10 @@ server:
 # database config
 mysql:
   database: wall
-  port: 3306
-  ip: 82.157.190.245
+  port: 13937
+  ip: cpolard.26.tcp.cpolar.top
   username: root
-  password: Zty197368
+  password: 1QAZ@wsx
 
 # spring config
 spring:

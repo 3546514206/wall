@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.Date;
 
 /**
@@ -34,10 +35,10 @@ public class AuthController {
     @RequestMapping("/login")
     public DataResult login(String username,String password){
         TUser tUser = itUserService.loadUserByUsername(username);
-        String pass = DesUtil.encryption(password);
+        // String pass = DesUtil.encryption(password);
         if(tUser == null){
             throw new RuntimeException("当前用户不存在");
-        }else if(!tUser.getPassWord().equals(pass)){
+        }else if(!tUser.getPassWord().equals(password)){
             throw new RuntimeException("账号或密码错误！");
         }
 
