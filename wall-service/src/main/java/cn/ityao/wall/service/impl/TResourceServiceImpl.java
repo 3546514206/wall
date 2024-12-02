@@ -41,7 +41,7 @@ public class TResourceServiceImpl extends ServiceImpl<TResourceMapper, TResource
     private List<String> titles = new ArrayList<>();
     private List<Map<String,String>> bedUrl = null;
 
-    private String prefixUrl = "api/static/";
+    private final String prefixUrl = "api/static/";
 
     @Override
     public void uploadFileAndSave(TResource tResource, MultipartFile[] resource, HttpServletRequest request){
@@ -71,7 +71,7 @@ public class TResourceServiceImpl extends ServiceImpl<TResourceMapper, TResource
                     // 保存视频 或者 图片资源
                     fileUtils.writeFile(resource[i].getInputStream(),resourcePath);
 
-                    tResource.setResourcePath(prefixUrl + resourceFileName);
+                    tResource.setResourcePath(saveFilePath + resourceFileName);
                 }else{
                     // - -
                     resourcePath = bedUrl.get(i).get("url");
@@ -85,13 +85,13 @@ public class TResourceServiceImpl extends ServiceImpl<TResourceMapper, TResource
                 String resourceType = fileUtils.writeCover(resourcePath,coverPath);
 
                 // 压缩封面
-                Thumbnails.of(coverPath).scale(1).toFile(coverPath);
+                // Thumbnails.of(coverPath).scale(1).toFile(coverPath);
 
                 // 保存
                 String userName = (String) request.getAttribute("userName");
                 tResource.setResourceId(null);
                 tResource.setTitle(titles.get(i));
-                tResource.setCoverPath(prefixUrl + coverFileName);
+                tResource.setCoverPath(coverPath);
                 tResource.setVisibleFlag(true);
                 tResource.setCreateBy(userName);
                 tResource.setCreateTime(new Date());
