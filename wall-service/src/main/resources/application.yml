@@ -9,7 +9,7 @@ server:
 # database config
 mysql:
   database: wall
-  port: 13937
+  port: 10415
   ip: cpolard.26.tcp.cpolar.top
   username: root
   password: 1QAZ@wsx
